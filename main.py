@@ -17,5 +17,4 @@ while debut:
         print("vous avez depasser nbr d'essais autorise")
         break
         
-    print("nombre de tentatives : "+ score)
-    
+print("nombre de tentatives : "+ str(score))
