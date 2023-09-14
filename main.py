@@ -1,11 +1,13 @@
 import random
+print("Bienvenue dans le jeu mastermind !")
 nbr_de_partie = 0
 score=0
-parties = True
-while parties :  #cette boucle while c'est pour demander a l'utilisateur est ce que il veut joue ou rejouer  
+
+
+while True :  #cette boucle while c'est pour demander a l'utilisateur est ce que il veut joue ou rejouer  
     go = input("vueillez ecrire start pour rejouer une autre partie : ") 
     if str(go) == "start": # si l'utilasateur ecrit start le jeu va ce lancer 
-        nbr_de_partie += 1  # c'est pour rajouter les parties 
+        nbr_de_partie += 1  
     
     
         LC = []
@@ -26,22 +28,47 @@ while parties :  #cette boucle while c'est pour demander a l'utilisateur est ce 
         print(code_c)
         
         
+        def evaluer_proposition(code, LC):
+            bien_places = 0
+            couleurs_correctes = 0
+            
+            for i in range(len(code)):
+                if LC[i] == code[i]:
+                    bien_places += 1
+                
+                    
+                if LC[i] in code:
+                    couleurs_correctes += 1
+
+            return bien_places, couleurs_correctes
         
         
-        debut = True
-        while debut:
+        
+        while True:
             score+=1
             if score <= int(tent) :
-                code = input("donner le code couleur  sous la forme des  couleurs : ")
-                if str(code) == code_c:
-                    print("Correct : "+ str(code) )
+                code = input("donner le code couleur : ")
+                if len(code) != nbr_e_c :
+                    print("Veuillez entrer une proposition valide de "+str(nbr_e_c)+" couleurs")
+                    continue
+                
+                bien_places, couleurs_correctes = evaluer_proposition(code, LC)
+                
+
+                if bien_places == nbr_e_c:
+                    print("Bravo ! Vous avez trouvé le code en {score} tentatives.")
                     break
-                else :
-                    print("Partiel : "+ str(code))
-            else :
-                print("vous avez depasser nbr d'essais autorise")
-                break
-    else :#si l'utilisateur n'ecrit rien ou n'import quoi, dans ce cas le jeu s'arret 
+                else:
+                    print("Correct : {bien_places}")
+                    print("Partiel : {couleurs_correctes}")
+                    
+                    
+                    
+                    
+                    
+                
+                
+    else :#si l'utilisateur n'ecrit rien ou n'import quoi, dans ce cas on quitte le jeu  
          print("à bientot")
          break
      
